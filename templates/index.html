@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agribot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="agribot-title">Agribot</h1>
+        <div class="content-wrapper">
+            <div class="sidebar" id="sidebar">
+                <img src="{{ url_for('static', filename='img/logo_icon.svg') }}" alt="Logo Icon" class="logo-icon">
+                <div class="sidebar-header">
+                    <h2>Chat Sessions</h2>
+                    <button id="sidebar-toggle" class="sidebar-toggle">
+                        <img src="{{ url_for('static', filename='img/close_icon.png') }}" alt="Toggle Sidebar">
+                    </button>
+                </div>
+                <ul id="chat-sessions">
+                    <li id="create-new-chat">
+                        <button onclick="createNewChat()" class="create-chat-btn">
+                            <img src="{{ url_for('static', filename='img/create_icon.png') }}" alt="Create Icon" class="create-icon">
+                            <span class="animate-text">Create New Chat</span>
+                        </button>
+                    </li>
+                    <!-- Chat sessions will be appended here -->
+                </ul>
+            </div>
+            <div class="chat-section" id="chat-section">
+                <div class="chat-container" id="chat-container">
+                    <!-- Chat messages will be appended here -->
+                </div>
+                <form id="chat-form" method="POST" enctype="multipart/form-data">
+                    <div class="input-wrapper">
+                        <button type="button" id="attachment-icon" class="attachment-btn">
+                            <img src="{{ url_for('static', filename='img/attachment_icon.png') }}" alt="Attachment Icon">
+                        </button>
+                        <div class="attachment-options" id="attachment-options">
+                            <label for="image_file">
+                                <img src="{{ url_for('static', filename='img/image_icon.png') }}" alt="Image Icon">
+                                Image
+                                <input type="file" id="image_file" name="image_file" accept="image/*" style="display:none">
+                            </label>
+                            <label for="pdf_files">
+                                <img src="{{ url_for('static', filename='img/pdf_icon.png') }}" alt="PDF Icon">
+                                PDF
+                                <input type="file" id="pdf_files" name="pdf_files" accept="application/pdf" multiple style="display:none">
+                            </label>
+                            <label for="audio_file">
+                                <img src="{{ url_for('static', filename='img/audio_icon.png') }}" alt="Audio Icon">
+                                Audio
+                                <input type="file" id="audio_file" name="audio_file" accept="audio/*" style="display:none">
+                            </label>
+                        </div>
+                        <input type="text" name="user_input" id="user_input" placeholder="Type your message here">
+                        <input type="image" src="{{ url_for('static', filename='img/send_icon.png') }}" alt="Send" id="send-button">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <button id="sidebar-toggle-open" class="sidebar-toggle open">
+        <img src="{{ url_for('static', filename='img/open_icon.png') }}" alt="Open Sidebar">
+    </button>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <div class="bot-chat-box" id="bot-chat-box">
+        <div class="chat-bubble" id="chat-bubble">
+            <p id="bot-message"></p>
+        </div>
+    </div>
+    <img src="{{ url_for('static', filename='img/bot_image.png') }}" alt="Bot Icon" class="bot-icon">
+    
+</body>
+</html>

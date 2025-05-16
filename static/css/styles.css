@@ -1,0 +1,410 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #8bc34a; /* خلفية الصفحة أوفويت */
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.agribot-title {
+    font-family: 'Courier New', Courier, monospace;
+    color: #000;
+    text-align: left;
+    margin-left: 320px; /* تحريك الكلمة إلى اليمين لتجنب التداخل مع الشريط الجانبي */
+    position: relative;
+    z-index: 1010; /* تأكد من أن الكلمة تظهر فوق الشريط الجانبي */
+    padding-top: 20px; /* إضافة بعض الفراغ العلوي لتجنب التداخل مع عناصر الشريط الجانبي */
+}
+
+
+.content-wrapper {
+    display: flex;
+    transition: margin-left 0.3s;
+}
+
+.sidebar {
+    width: 300px;
+    background: rgba(50, 50, 50, 0.95); /* رمادي غامق */
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+/* إخفاء شريط التمرير */
+.sidebar::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.sidebar.closed {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.toggle-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: -40px;
+    transition: transform 0.3s;
+}
+
+.sidebar.closed .toggle-btn {
+    right: 10px;
+    transform: rotate(180deg);
+}
+
+.chat-section {
+    margin-left: 300px;
+    padding: 10px;
+    flex: 1;
+    transition: margin-left 0.3s;
+}
+
+.sidebar.closed + .chat-section {
+    margin-left: 0;
+}
+
+.chat-container {
+    max-height: 500px;
+    overflow: hidden; /* لإخفاء شريط التمرير */
+    border: 1px solid #ddd;
+    border-radius: 2%;
+    padding: 10px;
+    margin-bottom: 20px;
+    height: 500px;
+    background: rgba(128, 128, 128, 0.7); /* رمادي فاتح مغمق جدًا */
+    color: #fff;
+}
+
+
+.chat-message {
+    margin-bottom: 10px;
+}
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input-wrapper input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    padding-right: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #e0e0e0; /* رمادي فاتح أغمق */
+}
+
+.input-wrapper button[type="submit"] {
+    position: absolute;
+    right: 0px;
+    padding: 11px 20px;
+    border: none;
+    background-color: #000; /* أخضر فاتح */
+    color: #fff; /* لون النص */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.attachment-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.attachment-options {
+    display: none;
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.attachment-options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.attachment-options img {
+    margin-right: 5px;
+}
+
+.message-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.human {
+    text-align: left;
+    color: blue;
+}
+
+.ai {
+    text-align: left;
+    color: green;
+}
+
+.additional-forms {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.additional-forms form {
+    flex: 1;
+}
+
+ul#chat-sessions {
+    list-style-type: none;
+    padding: 0;
+    color: #f8f8f8;
+}
+
+ul#chat-sessions li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+ul#chat-sessions li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+}
+
+.logo-icon {
+    display: block;
+    width: 250px; /* يمكنك تعديل هذا لتغيير حجم الشعار */
+    height: auto; /* يحافظ على نسبة العرض إلى الارتفاع الأصلية */
+    margin: 20px auto; /* يجعل الشعار في المنتصف ويضيف مساحة حوله */
+    position: relative;
+    top: -20px;
+    right: 10px;
+}
+
+.sidebar-header {
+    display: flex;
+    position: absolute;
+    top: 190px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    color: #f8f8f8;
+}
+
+.sidebar-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    left: 105px;
+}
+
+.sidebar-toggle img {
+    width: 20px;
+    height: 20px;
+}
+
+
+.sidebar-toggle.open {
+    display: none;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+}
+
+.create-chat-btn {
+    display: flex;
+    align-items: center;
+    background-color: #8bc34a; /* أخضر فاتح */
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.create-chat-btn .create-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.create-chat-btn .animate-text {
+    display: block;
+    animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.create-chat-btn:hover {
+    background-color: #8bc34a; /* أخضر فاتح */
+    transform: translateY(-2px);
+}
+
+.create-chat-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.create-chat-btn:hover::after {
+    opacity: 1;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: black;
+    }
+}
+
+
+.input-wrapper input[type="image"] {
+    width: 25px; /* حجم الصورة حسب الحاجة */
+    height: 25px;
+    position: relative;
+    right: 40px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    background-position: 10px center; /* تحديد موقع الصورة داخل الحقل */
+}
+
+.input-wrapper input[type="image"]:hover {
+    opacity: 0.8; /* تغيير الشفافية عند التحويم */
+}
+
+.bot-chat-box {
+    position: fixed;
+    bottom: 90px; /* أعلى بقليل من أيقونة الروبوت */
+    right: 30px;
+    max-width: 300px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* إخفاء الصندوق في البداية */
+}
+
+.chat-bubble {
+    position: relative;
+    background: #f1f1f1;
+    border-radius: 15px;
+    padding: 10px;
+    color: #333;
+}
+
+.chat-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; /* تمكين السهم أسفل الفقاعة */
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #f1f1f1; /* نفس لون خلفية الفقاعة */
+}
+
+.bot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: pulse 2s infinite;
+}
+
+.bot-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+

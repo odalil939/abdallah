@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Chat</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Agribot Chat</h1>
+        <div class="chat-box">
+            {% for message in chat_history %}
+                <div class="message {{ message.sender_type }}">
+                    {% if message.message_type == "text" %}
+                        <p>{{ message.content }}</p>
+                    {% elif message.message_type == "image" %}
+                        <img src="data:image/jpeg;base64,{{ message.content }}" alt="User Image">
+                    {% elif message.message_type == "audio" %}
+                        <audio controls>
+                            <source src="data:audio/wav;base64,{{ message.content }}" type="audio/wav">
+                        </audio>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <form method="POST" action="{{ url_for('chat') }}">
+            <input type="text" name="user_input" placeholder="Type your message here">
+            <button type="submit">Send</button>
+        </form>
+        <form method="POST" action="{{ url_for('delete_chat') }}">
+            <button type="submit">Delete Chat History</button>
+        </form>
+    </div>
+</body>
+</html>
